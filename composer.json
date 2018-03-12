@@ -1,0 +1,28 @@
+{
+  "name": "svsoft/yii2-admin",
+  "description": "Administration module for Yii2",
+  "type": "yii2-extension",
+  "keywords": ["yii2","extension","module"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Viktor Shiryakov",
+      "email": "shiryakovv@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "imagine/imagine": "*",
+    "dmstr/yii2-adminlte-asset": "2.*",
+    "2amigos/yii2-ckeditor-widget": "^2.0",
+    "mihaildev/yii2-elfinder": "^1.2",
+    "unclead/yii2-multiple-input": "~2.0",
+    "kartik-v/yii2-datecontrol": "dev-master",
+    "kartik-v/yii2-widgets": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+        "svsoft\\yii\\admin\\": ""
+    }
+  }
+}
