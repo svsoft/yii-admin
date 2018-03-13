@@ -1,7 +1,12 @@
 <?php
 use dmstr\widgets\Alert;
+use yii\widgets\Breadcrumbs;
 
+/**
+ * @var $content string
+ */
 ?>
+
 <div class="content-wrapper">
     <section class="content-header">
         <?php if (isset($this->blocks['content-header'])) { ?>
@@ -20,12 +25,11 @@ use dmstr\widgets\Alert;
             </h1>
         <?php } ?>
 
-        <?=Yii::$app->breadcrumbs->widget()?>
-        <?/*Breadcrumbs::widget(
+        <?Breadcrumbs::widget(
             [
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]
-        ) */?>
+        )?>
     </section>
 
     <section class="content">
