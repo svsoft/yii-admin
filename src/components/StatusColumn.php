@@ -6,11 +6,8 @@ use yii\grid\DataColumn;
 use yii\helpers\Html;
 
 /**
- * Класс для ссуммирования значений колонок и выводе в футере
- *
- * Class NumberColumn
- *
- * @package app\components
+ * Class StatusColumn
+ * @package svsoft\yii\admin\components
  */
 class StatusColumn extends DataColumn
 {

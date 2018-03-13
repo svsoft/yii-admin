@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-        "svsoft\\yii\\admin\\": ""
+        "svsoft\\yii\\admin\\": "src"
     }
   }
 }

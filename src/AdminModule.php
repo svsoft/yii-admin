@@ -2,22 +2,19 @@
 
 namespace svsoft\yii\admin;
 
-use svsoft\yii\admin\components\BaseAdminModule;
-use yii\base\Module;
-use yii\filters\AccessControl;
-use yii\web\AssetManager;
-use yii\web\ErrorHandler;
+use svsoft\yii\admin\base\AdminModuleBase;
+use svsoft\yii\admin\components\Menu;
 
 /**
- * admin module definition class
+ * Class AdminModule
+ * @package svsoft\yii\admin
+ *
+ * @property Menu $menu
  */
-class AdminModule extends Module
+class AdminModule extends AdminModuleBase
 {
 
     public $layout = 'main.php';
-    /**
-     * @inheritdoc
-     */
 
     /**
      * @inheritdoc
@@ -25,8 +22,6 @@ class AdminModule extends Module
     public function init()
     {
         parent::init();
-
-        //var_dump($this->layout);die();
 
         // Добавляем шаблон для crud в gii
         $gii = $this->getModule('gii');
@@ -41,8 +36,20 @@ class AdminModule extends Module
             if(empty($giiCrudConfig['class']))
                 $giiCrudConfig['class'] = 'yii\gii\generators\crud\Generator';
 
-
-            $giiCrudConfig['templates']['adminlte'] = '@svs-admin/gii/templates/crud/simple';
+            $giiCrudConfig['templates']['adminlte'] = $this->basePath . '/gii/templates/crud/simple';
         }
+
+        // Устанавливаем компонент меню
+        $this->set('menu',[
+            'class'=>Menu::className(),
+        ]);
+    }
+
+    /**
+     * @return Menu
+     */
+    public function getMenu()
+    {
+        return $this->get('menu');
     }
 }
