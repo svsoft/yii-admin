@@ -17,7 +17,7 @@ class MenuItem extends Component
     /**
      * @var MenuItem[]
      */
-    protected $items;
+    protected $items = [];
 
     function __construct($url, $label, $config = [])
     {
