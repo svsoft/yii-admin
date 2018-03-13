@@ -27,6 +27,13 @@ class MenuItem extends Component
         parent::__construct($config);
     }
 
+    /**
+     * @param $url
+     * @param $label
+     * @param array $config
+     *
+     * @return MenuItem
+     */
     function addItem($url, $label, $config = [])
     {
         $item = new MenuItem($url, $label, $config);
@@ -35,6 +42,11 @@ class MenuItem extends Component
         return $item;
     }
 
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
     public function setVisible($value)
     {
         $this->visible = $value;
@@ -42,6 +54,11 @@ class MenuItem extends Component
         return $this;
     }
 
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
     public function setIcon($value)
     {
         $this->icon = $value;
@@ -49,11 +66,9 @@ class MenuItem extends Component
         return $this;
     }
 
-    public function getVisible()
-    {
-        return $this->visible;
-    }
-
+    /**
+     * @return MenuItem[]
+     */
     function getItems()
     {
         return $this->items;
