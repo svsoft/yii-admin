@@ -43,6 +43,16 @@ class AdminModule extends AdminModuleBase
         $this->set('menu',[
             'class'=>Menu::className(),
         ]);
+
+        // Добавляем контролер мап для элфаиндера
+        \Yii::$app->controllerMap['elfinder'] = [
+            'class' => 'mihaildev\elfinder\PathController',
+            'access' => ['@'],
+            'root' => [
+                'path' => 'upload/elfinder',
+                'name' => 'Все файлы'
+            ]
+        ];
     }
 
     /**
