@@ -103,7 +103,7 @@ class ActionColumn extends \yii\grid\ActionColumn
         $buttonOptions = ArrayHelper::getValue($button, 'options', []);
         $buttonOptions = ArrayHelper::merge($this->buttonOptions, $buttonOptions);
 
-        $buttonAppendOptions = $button['appendOptions'];
+        $buttonAppendOptions = ArrayHelper::getValue($button, 'appendOptions', []);
 
         // Заполняем массив options из класса и тайтла
         if (isset($button['class']))
