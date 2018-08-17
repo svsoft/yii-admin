@@ -39,10 +39,10 @@ class AdminModule extends AdminModuleBase
             $giiCrudConfig['templates']['adminlte'] = $this->basePath . '/gii/templates/crud/simple';
         }
 
-        // Устанавливаем компонент меню
-        $this->set('menu',[
-            'class'=>Menu::className(),
-        ]);
+        if (!$this->has('menu'))
+            $this->set('menu',[
+                'class'=>Menu::class,
+            ]);
 
         // Добавляем контролер мап для элфаиндера
         \Yii::$app->controllerMap['elfinder'] = [

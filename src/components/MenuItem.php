@@ -1,16 +1,21 @@
 <?php
 namespace svsoft\yii\admin\components;
 
-use yii\base\Component;
+use yii\base\BaseObject;
 
 
-class MenuItem extends Component
+class MenuItem extends BaseObject
 {
     public $url;
 
     public $label;
 
     public $visible;
+
+    /**
+     * @var Menu
+     */
+    public $menu;
 
     public $icon;
 
@@ -19,59 +24,17 @@ class MenuItem extends Component
      */
     protected $items = [];
 
-    function __construct($url, $label, $config = [])
+    public function init()
     {
-        $this->url = $url;
-        $this->label = $label;
+        if ($this->menu)
+        {
+            if (empty($this->menu['class']))
+                $this->menu['class'] = Menu::class;
 
-        parent::__construct($config);
-    }
+            $this->menu = \Yii::createObject($this->menu);
+        }
 
-    /**
-     * @param $url
-     * @param $label
-     * @param array $config
-     *
-     * @return MenuItem
-     */
-    function addItem($url, $label, $config = [])
-    {
-        $item = new MenuItem($url, $label, $config);
-        $this->items[] = $item;
-
-        return $item;
-    }
-
-    /**
-     * @param $value
-     *
-     * @return $this
-     */
-    public function setVisible($value)
-    {
-        $this->visible = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param $value
-     *
-     * @return $this
-     */
-    public function setIcon($value)
-    {
-        $this->icon = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return MenuItem[]
-     */
-    function getItems()
-    {
-        return $this->items;
+        parent::init();
     }
 
 }
