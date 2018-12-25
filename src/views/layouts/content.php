@@ -25,7 +25,7 @@ use yii\widgets\Breadcrumbs;
             </h1>
         <?php } ?>
 
-        <?Breadcrumbs::widget(
+        <?=Breadcrumbs::widget(
             [
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]
