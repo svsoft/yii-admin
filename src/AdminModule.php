@@ -15,8 +15,6 @@ class AdminModule extends AdminModuleBase
 {
     public $layout = 'main.php';
 
-    public $siteName = 'RUBIT';
-
     /**
      * @inheritdoc
      */
