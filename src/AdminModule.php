@@ -13,8 +13,9 @@ use svsoft\yii\admin\components\Menu;
  */
 class AdminModule extends AdminModuleBase
 {
-
     public $layout = 'main.php';
+
+    public $siteName = 'RUBIT';
 
     /**
      * @inheritdoc
