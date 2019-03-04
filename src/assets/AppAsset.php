@@ -28,7 +28,7 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
-        'svsoft\yii\admin\assets\AdminLtePluginAsset',
+        'dmstr\web\AdminLteAsset',
     ];
 
     public function init()
