@@ -19,11 +19,16 @@ class MenuItem extends BaseObject
 
     public $icon;
 
+    public $options = [];
+
     /**
      * @var MenuItem[]
      */
     protected $items = [];
 
+    /**
+     * @throws \yii\base\InvalidConfigException
+     */
     public function init()
     {
         if ($this->menu)

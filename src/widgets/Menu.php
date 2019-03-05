@@ -2,7 +2,6 @@
 
 namespace svsoft\yii\admin\widgets;
 
-use svsoft\yii\admin\components\BaseAdminModule;
 use svsoft\yii\admin\components\MenuItem;
 use Yii;
 
@@ -18,6 +17,13 @@ class Menu extends \dmstr\widgets\Menu
     protected $menu;
 
 
+    /**
+     * Menu constructor.
+     *
+     * @param array $config
+     *
+     * @throws \yii\base\InvalidConfigException
+     */
     public function __construct($config = [])
     {
         $this->menu = Yii::$app->getModule('admin')->get('menu');
@@ -28,8 +34,8 @@ class Menu extends \dmstr\widgets\Menu
     public function init()
     {
         $this->fillItems($this->menu->items, $this->items);
-
         parent::init();
+
     }
 
 
@@ -43,10 +49,11 @@ class Menu extends \dmstr\widgets\Menu
     {
         foreach($menuItems as $menuItem)
         {
-            $item = ['label'=>$menuItem->label, 'url'=>$menuItem->url, 'icon'=>$menuItem->icon, 'items'=>[]];
+            $item = ['label'=>$menuItem->label, 'url'=>$menuItem->url, 'icon'=>$menuItem->icon, 'options'=>$menuItem->options];
 
             if ($menuItem->menu)
             {
+                $item['items'] = [];
                 $this->fillItems($menuItem->menu->items, $item['items']);
             }
 
