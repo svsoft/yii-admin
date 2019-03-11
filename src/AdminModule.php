@@ -21,6 +21,17 @@ class AdminModule extends Module
 
     public $accessRule = [];
 
+
+    public function __construct($id, Module $parent = null, array $config = [])
+    {
+        $this->accessRule = [
+            'allow' => true,
+            'roles' => ['@'],
+        ];
+
+        parent::__construct($id, $parent, $config);
+    }
+
     /**
      * @inheritdoc
      */
@@ -66,14 +77,6 @@ class AdminModule extends Module
     public function init()
     {
         parent::init();
-
-        if (!$this->accessRule)
-        {
-            $this->accessRule = [
-                'allow' => true,
-                'roles' => ['@'],
-            ];
-        }
 
         $this->configureGii();
 
