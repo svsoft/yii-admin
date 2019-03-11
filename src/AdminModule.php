@@ -2,8 +2,10 @@
 
 namespace svsoft\yii\admin;
 
-use svsoft\yii\admin\base\AdminModuleBase;
 use svsoft\yii\admin\components\Menu;
+use yii\base\Module;
+use yii\filters\AccessControl;
+use yii\filters\AccessRule;
 
 /**
  * Class AdminModule
@@ -11,17 +13,37 @@ use svsoft\yii\admin\components\Menu;
  *
  * @property Menu $menu
  */
-class AdminModule extends AdminModuleBase
+class AdminModule extends Module
 {
     public $layout = 'main.php';
+
+    public $useModuleAuthorize = true;
+
+    public $accessRule = [];
 
     /**
      * @inheritdoc
      */
-    public function init()
+    public function behaviors()
     {
-        parent::init();
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'class'=>AccessRule::class,
+                        'controllers' => [ $this->id . '/login'],
+                        'allow' => true,
+                    ],
+                    $this->accessRule,
+                ],
+            ],
 
+        ];
+    }
+
+    private function configureGii()
+    {
         // Добавляем шаблон для crud в gii
         $gii = $this->getModule('gii');
 
@@ -37,11 +59,30 @@ class AdminModule extends AdminModuleBase
 
             $giiCrudConfig['templates']['adminlte'] = $this->basePath . '/gii/templates/crud/simple';
         }
+    }
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+
+        if (!$this->accessRule)
+        {
+            $this->accessRule = [
+                'allow' => true,
+                'roles' => ['@'],
+            ];
+        }
+
+        $this->configureGii();
 
         if (!$this->has('menu'))
+        {
             $this->set('menu',[
                 'class'=>Menu::class,
             ]);
+        }
 
         // Добавляем контролер мап для элфаиндера
         \Yii::$app->controllerMap['elfinder'] = [
@@ -55,7 +96,8 @@ class AdminModule extends AdminModuleBase
     }
 
     /**
-     * @return Menu
+     * @return null|object|Menu
+     * @throws \yii\base\InvalidConfigException
      */
     public function getMenu()
     {
