@@ -40,7 +40,7 @@ use yii\widgets\Breadcrumbs;
 
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>Версия</b> 0.5.6
+        <b>Версия</b> 0.7.0
     </div>
     <strong>Copyright &copy; <?=date('Y')?> <a href="http://rubit.tech">RUBIT</a></strong>
 </footer>
